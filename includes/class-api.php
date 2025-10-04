@@ -77,6 +77,19 @@ class SearchAdvanx_API {
                 ),
             ),
         ));
+        
+        // Debug endpoint for troubleshooting
+        register_rest_route('searchadvanx/v1', '/debug-search', array(
+            'methods' => 'GET',
+            'callback' => array($this, 'debug_search'),
+            'permission_callback' => '__return_true',
+            'args' => array(
+                'query' => array(
+                    'required' => true,
+                    'type' => 'string',
+                ),
+            ),
+        ));
     }
     
     /**
@@ -348,6 +361,56 @@ class SearchAdvanx_API {
         } else {
             wp_send_json_error('HTTP ' . $response_code . ': ' . wp_remote_retrieve_response_message($response));
         }
+    }
+    
+    /**
+     * Debug search endpoint for troubleshooting
+     */
+    public function debug_search($request) {
+        $query = $request->get_param('query');
+        
+        $debug_info = array(
+            'plugin_version' => SEARCHADVANX_VERSION,
+            'wordpress_version' => get_bloginfo('version'),
+            'site_url' => home_url(),
+            'query' => $query,
+            'options' => get_option('searchadvanx_options', array()),
+            'test_local_search' => array(),
+            'test_external_config' => array(),
+        );
+        
+        // Test local search
+        $local_args = array(
+            's' => $query,
+            'post_type' => 'any',
+            'posts_per_page' => 5,
+            'post_status' => 'publish',
+        );
+        
+        $local_query = new WP_Query($local_args);
+        $debug_info['test_local_search'] = array(
+            'found_posts' => $local_query->found_posts,
+            'post_count' => $local_query->post_count,
+            'sql' => $local_query->request,
+        );
+        
+        wp_reset_postdata();
+        
+        // Test external sites configuration
+        $options = get_option('searchadvanx_options', array());
+        $external_sites = isset($options['external_sites_config']) ? $options['external_sites_config'] : array();
+        
+        foreach ($external_sites as $index => $site) {
+            $debug_info['test_external_config'][$index] = array(
+                'name' => $site['name'] ?? 'Unnamed',
+                'url' => $site['url'] ?? 'No URL',
+                'has_api_key' => !empty($site['api_key']),
+                'endpoint' => $site['endpoint'] ?? 'wp-json/searchadvanx/v1/search',
+                'active' => $site['active'] ?? false,
+            );
+        }
+        
+        return new WP_REST_Response($debug_info, 200);
     }
     
     /**
