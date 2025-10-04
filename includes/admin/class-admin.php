@@ -99,6 +99,14 @@ class SearchAdvanx_Admin {
             'searchadvanx'
         );
         
+        // Updates Section
+        add_settings_section(
+            'searchadvanx_updates',
+            'Plugin Updates',
+            array($this, 'updates_section_callback'),
+            'searchadvanx'
+        );
+        
         $this->add_settings_fields();
     }
     
@@ -154,6 +162,31 @@ class SearchAdvanx_Admin {
             array($this, 'api_cache_duration_callback'),
             'searchadvanx',
             'searchadvanx_api'
+        );
+        
+        // Updates fields
+        add_settings_field(
+            'auto_updates',
+            'Automatic Updates',
+            array($this, 'auto_updates_callback'),
+            'searchadvanx',
+            'searchadvanx_updates'
+        );
+        
+        add_settings_field(
+            'update_branch',
+            'Update Branch',
+            array($this, 'update_branch_callback'),
+            'searchadvanx',
+            'searchadvanx_updates'
+        );
+        
+        add_settings_field(
+            'current_version',
+            'Current Version',
+            array($this, 'current_version_callback'),
+            'searchadvanx',
+            'searchadvanx_updates'
         );
     }
     
@@ -445,5 +478,60 @@ class SearchAdvanx_Admin {
             </div>
         </div>
         <?php
+    }
+    
+    /**
+     * Updates section callback
+     */
+    public function updates_section_callback() {
+        echo '<p>Configure automatic updates from GitHub. The plugin will check for new releases and allow automatic updates.</p>';
+    }
+    
+    /**
+     * Auto updates callback
+     */
+    public function auto_updates_callback() {
+        $options = get_option('searchadvanx_options');
+        $auto_updates = isset($options['auto_updates']) ? $options['auto_updates'] : '1';
+        echo '<label><input type="checkbox" name="searchadvanx_options[auto_updates]" value="1" ' . checked(1, $auto_updates, false) . '> Enable automatic updates from GitHub</label>';
+        echo '<p class="description">When enabled, the plugin will automatically check for updates from the GitHub repository.</p>';
+    }
+    
+    /**
+     * Update branch callback
+     */
+    public function update_branch_callback() {
+        $options = get_option('searchadvanx_options');
+        $branch = isset($options['update_branch']) ? $options['update_branch'] : 'main';
+        echo '<select name="searchadvanx_options[update_branch]">';
+        echo '<option value="main" ' . selected('main', $branch, false) . '>Main (Stable)</option>';
+        echo '<option value="develop" ' . selected('develop', $branch, false) . '>Develop (Beta)</option>';
+        echo '</select>';
+        echo '<p class="description">Choose which branch to receive updates from. Main branch contains stable releases.</p>';
+    }
+    
+    /**
+     * Current version callback
+     */
+    public function current_version_callback() {
+        global $searchadvanx_update_checker;
+        
+        echo '<p><strong>Current Version:</strong> ' . SEARCHADVANX_VERSION . '</p>';
+        
+        if (isset($searchadvanx_update_checker)) {
+            $update_info = $searchadvanx_update_checker->getUpdate();
+            if ($update_info) {
+                echo '<p><strong>Available Update:</strong> ' . $update_info->version . '</p>';
+                echo '<p><strong>Release Date:</strong> ' . date('Y-m-d H:i:s', strtotime($update_info->details['last_updated'])) . '</p>';
+                echo '<p><a href="' . admin_url('plugins.php') . '" class="button button-primary">Update Now</a></p>';
+            } else {
+                echo '<p><span style="color: green;">✓ Plugin is up to date</span></p>';
+            }
+            
+            echo '<p><a href="' . add_query_arg(['puc_check_for_updates' => 1, 'puc_slug' => 'searchadvanx']) . '" class="button">Check for Updates</a></p>';
+        }
+        
+        echo '<p><strong>Repository:</strong> <a href="https://github.com/prangishviliAbe/SearchAdvanx" target="_blank">GitHub</a></p>';
+        echo '<p><strong>Latest Releases:</strong> <a href="https://github.com/prangishviliAbe/SearchAdvanx/releases" target="_blank">View Releases</a></p>';
     }
 }

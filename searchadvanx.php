@@ -21,6 +21,46 @@ define('SEARCHADVANX_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('SEARCHADVANX_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('SEARCHADVANX_PLUGIN_BASENAME', plugin_basename(__FILE__));
 
+// Initialize Plugin Update Checker
+require_once SEARCHADVANX_PLUGIN_DIR . 'plugin-update-checker-master/plugin-update-checker.php';
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+// Make update checker globally accessible
+global $searchadvanx_update_checker;
+$searchadvanx_update_checker = PucFactory::buildUpdateChecker(
+    'https://github.com/prangishviliAbe/SearchAdvanx/',
+    __FILE__,
+    'searchadvanx'
+);
+
+// Set the branch that contains the stable release (optional, defaults to 'master')
+$searchadvanx_update_checker->setBranch('main');
+
+// Enable release assets - this allows downloading from GitHub releases
+$searchadvanx_update_checker->getVcsApi()->enableReleaseAssets();
+
+// Allow users to configure update settings
+add_action('init', function() {
+    $options = get_option('searchadvanx_options');
+    
+    // Check if auto updates are disabled
+    if (isset($options['auto_updates']) && !$options['auto_updates']) {
+        // Disable automatic update checks
+        global $searchadvanx_update_checker;
+        if ($searchadvanx_update_checker) {
+            remove_action('load-plugins.php', array($searchadvanx_update_checker, 'handleManualCheck'));
+        }
+    }
+    
+    // Set custom branch if configured
+    if (isset($options['update_branch']) && $options['update_branch'] !== 'main') {
+        global $searchadvanx_update_checker;
+        if ($searchadvanx_update_checker) {
+            $searchadvanx_update_checker->setBranch($options['update_branch']);
+        }
+    }
+});
+
 // Autoloader
 spl_autoload_register(function ($class) {
     if (strpos($class, 'SearchAdvanx') === 0) {

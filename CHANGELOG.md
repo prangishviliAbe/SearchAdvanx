@@ -5,14 +5,25 @@ All notable changes to SearchAdvanx will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- Automatic plugin updates from GitHub using Plugin Update Checker
+- Updates settings section in admin panel
+- Configurable update branches (main/develop)
+- Manual update check functionality
+- GitHub integration for seamless updates
+
 ## [1.0.1] - 2025-10-04
 
 ### Fixed
+
 - Critical error on External Sites admin page
 - Class loading and autoloader issues
 - Plugin initialization error handling
 
 ### Added
+
 - Professional cover image for repository branding
 - Complete admin sidebar menu with dedicated sections
 - Modern dashboard with statistics and quick actions
@@ -20,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved error handling and debugging capabilities
 
 ### Changed
+
 - Moved plugin from Settings submenu to main admin sidebar menu
 - Upgraded admin interface with modern cards and navigation
 - Enhanced class loading with better error detection
