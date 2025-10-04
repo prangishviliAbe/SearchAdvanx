@@ -7,7 +7,7 @@ Advanced WordPress search engine plugin with Elementor and JetEngine support, in
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL%20v2%2B-blue)
-![Version](https://img.shields.io/badge/Version-1.2.0-green)
+![Version](https://img.shields.io/badge/Version-1.3.3-green)
 
 ## 🚀 Features
 
@@ -368,22 +368,28 @@ The plugin is translation-ready with:
 
 ### All Releases
 
-| Version                                                                       | Date       | Status     | Download                                                                           |
-| ----------------------------------------------------------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
-| [v1.2.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) | 2025-10-04 | **Latest** | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) |
-| [v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) |
-| [v1.0.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) |
-| [v1.0.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) |
+| Version                                                                       | Date       | Status       | Key Features                            | Download                                                                           |
+| ----------------------------------------------------------------------------- | ---------- | ------------ | --------------------------------------- | ---------------------------------------------------------------------------------- |
+| [v1.3.3](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.3) | 2025-10-04 | **🟢 Latest** | Full width expansion, CSS improvements  | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.3) |
+| [v1.3.2](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.2) | 2025-10-04 | Stable       | Grid column options (2,3,4,5)           | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.2) |
+| [v1.3.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.1) | 2025-10-04 | Stable       | Pro version teaser system              | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.1) |
+| [v1.3.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.0) | 2025-10-04 | Stable       | 3 modern display styles               | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.3.0) |
+| [v1.2.2](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.2) | 2025-10-04 | Stable       | External search debugging              | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.2) |
+| [v1.2.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.1) | 2025-10-04 | Stable       | Enhanced Elementor integration         | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.1) |
+| [v1.2.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) | 2025-10-04 | Stable       | API key management system              | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) |
+| [v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) | 2025-10-04 | Stable       | Automatic updates system               | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) |
+| [v1.0.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) | 2025-10-04 | Stable       | Critical bug fixes                     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) |
+| [v1.0.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) | 2025-10-04 | Stable       | Initial release                        | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) |
 
-### 🚀 Latest Release - v1.2.0
+### 🚀 Latest Release - v1.3.3
 
-**Enhanced API Key Management System**
+**Full Width Expansion & Enhanced Container Support**
 
-- ✅ Built-in secure API key generator
-- ✅ Professional admin interface with show/hide toggle
-- ✅ One-click copy to clipboard functionality
-- ✅ Comprehensive setup documentation
-- ✅ Step-by-step external site connection guide
+- ✅ **Removed 800px width constraint** - Now fits any Elementor container width
+- ✅ **Enhanced responsive design** - Better mobile and tablet experience
+- ✅ **CSS standards compliance** - Improved browser compatibility
+- ✅ **Grid layout improvements** - All column options work with full width
+- ✅ **Update system enhancements** - Better error handling and troubleshooting
 
 [📋 **View All Releases**](RELEASES.md) | [🔗 **GitHub Releases**](https://github.com/prangishviliAbe/SearchAdvanx/releases)
 
