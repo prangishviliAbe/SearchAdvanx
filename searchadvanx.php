@@ -3,7 +3,7 @@
  * Plugin Name: SearchAdvanx
  * Plugin URI: https://github.com/abeprangishvili/SearchAdvanx
  * Description: Advanced search engine plugin with Elementor and JetEngine support, including REST API functionality for cross-site searching.
- * Version: 1.0.1
+ * Version: 1.1.0
  * Author: Abe Prangishvili
  * Author URI: https://github.com/prangishviliAbe
  * License: GPL v2 or later
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
-define('SEARCHADVANX_VERSION', '1.0.1');
+define('SEARCHADVANX_VERSION', '1.1.0');
 define('SEARCHADVANX_PLUGIN_FILE', __FILE__);
 define('SEARCHADVANX_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('SEARCHADVANX_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -30,7 +30,7 @@ global $searchadvanx_update_checker;
 $searchadvanx_update_checker = PucFactory::buildUpdateChecker(
     'https://github.com/prangishviliAbe/SearchAdvanx/',
     __FILE__,
-    'searchadvanx'
+    'SearchAdvanx'
 );
 
 // Set the branch that contains the stable release (optional, defaults to 'master')

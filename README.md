@@ -7,7 +7,7 @@ Advanced WordPress search engine plugin with Elementor and JetEngine support, in
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL%20v2%2B-blue)
-![Version](https://img.shields.io/badge/Version-1.0.1-green)
+![Version](https://img.shields.io/badge/Version-1.1.0-green)
 
 ## 🚀 Features
 

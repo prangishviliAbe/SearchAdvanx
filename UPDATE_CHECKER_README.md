@@ -14,6 +14,7 @@ This plugin uses the Plugin Update Checker library to provide automatic updates 
 Go to **SearchAdvanx > Settings** and scroll to the **Plugin Updates** section:
 
 ### Settings Available:
+
 - **Automatic Updates**: Enable/disable automatic update checks
 - **Update Branch**: Choose between `main` (stable) or `develop` (beta) releases
 - **Current Version**: View current version and check for updates manually
@@ -21,6 +22,7 @@ Go to **SearchAdvanx > Settings** and scroll to the **Plugin Updates** section:
 ## Manual Update Check
 
 You can manually check for updates by:
+
 1. Going to SearchAdvanx admin settings
 2. Click "Check for Updates" in the Plugin Updates section
 3. Or use the WordPress Plugins page and click "Check for updates"
@@ -47,6 +49,7 @@ You can manually check for updates by:
 ## Troubleshooting
 
 If updates aren't working:
+
 1. Check your internet connection
 2. Verify the GitHub repository is accessible
 3. Check WordPress error logs for any issues
@@ -55,6 +58,7 @@ If updates aren't working:
 ## Privacy
 
 The plugin only connects to:
+
 - GitHub API for checking releases
 - Your own configured external WordPress sites (if any)
 
