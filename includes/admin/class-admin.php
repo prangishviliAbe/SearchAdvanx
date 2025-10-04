@@ -405,7 +405,15 @@ class SearchAdvanx_Admin {
         <div class="wrap">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <div class="searchadvanx-admin-content">
-                <?php $this->display_external_sites(); ?>
+                <form method="post" action="options.php">
+                    <?php
+                    settings_fields('searchadvanx_settings');
+                    echo '<h2>External WordPress Sites Configuration</h2>';
+                    echo '<p>Configure external WordPress sites for cross-site searching functionality.</p>';
+                    $this->external_sites_manager_callback();
+                    submit_button('Save External Sites');
+                    ?>
+                </form>
             </div>
         </div>
         <?php
