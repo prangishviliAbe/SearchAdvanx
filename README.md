@@ -327,6 +327,23 @@ The plugin is translation-ready with:
 
 ## 📝 Changelog
 
+### Version 1.1.0
+
+- **🚀 NEW: Automatic Plugin Updates** - Updates directly from GitHub
+- **🎛️ Enhanced Admin Interface** - New updates management section
+- **⚙️ Configurable Update Channels** - Choose stable or beta releases
+- **🔄 Manual Update Checks** - Check for updates on demand
+- **📋 Professional Update Experience** - WordPress-native update process
+- **🔗 GitHub Integration** - Direct repository and releases links
+
+### Version 1.0.1
+
+- Fixed critical error on External Sites admin page
+- Improved class loading and error handling
+- Added professional admin sidebar menu
+- Enhanced dashboard with statistics
+- Updated repository branding
+
 ### Version 1.0.0
 
 - Initial release
