@@ -24,9 +24,29 @@ define('SEARCHADVANX_PLUGIN_BASENAME', plugin_basename(__FILE__));
 // Autoloader
 spl_autoload_register(function ($class) {
     if (strpos($class, 'SearchAdvanx') === 0) {
-        $class_file = str_replace('_', '-', strtolower($class));
+        // Handle different class naming patterns
+        $class_file = strtolower($class);
+        $class_file = str_replace('_', '-', $class_file);
         $class_file = str_replace('searchadvanx-', '', $class_file);
         
+        // Map specific classes to their files
+        $class_map = [
+            'SearchAdvanx_API' => 'includes/class-api.php',
+            'SearchAdvanx_Database' => 'includes/class-database.php',
+            'SearchAdvanx_Admin' => 'includes/admin/class-admin.php',
+            'SearchAdvanx_Elementor_Widget' => 'includes/integrations/class-elementor-widget.php',
+            'SearchAdvanx' => 'includes/class-searchadvanx.php'
+        ];
+        
+        if (isset($class_map[$class])) {
+            $file_path = SEARCHADVANX_PLUGIN_DIR . $class_map[$class];
+            if (file_exists($file_path)) {
+                require_once $file_path;
+                return;
+            }
+        }
+        
+        // Fallback to original pattern matching
         $possible_paths = [
             SEARCHADVANX_PLUGIN_DIR . 'includes/class-' . $class_file . '.php',
             SEARCHADVANX_PLUGIN_DIR . 'includes/admin/class-' . $class_file . '.php',
@@ -42,26 +62,32 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Include required files
-require_once SEARCHADVANX_PLUGIN_DIR . 'includes/class-database.php';
-require_once SEARCHADVANX_PLUGIN_DIR . 'includes/class-api.php';
-require_once SEARCHADVANX_PLUGIN_DIR . 'includes/admin/class-admin.php';
-require_once SEARCHADVANX_PLUGIN_DIR . 'includes/integrations/class-elementor-widget.php';
-
-// Include core files
-require_once SEARCHADVANX_PLUGIN_DIR . 'includes/class-searchadvanx.php';
+// Core files will be loaded by autoloader when needed
 
 /**
  * Main instance of SearchAdvanx.
  *
- * @return SearchAdvanx
+ * @return SearchAdvanx|false
  */
 function searchadvanx() {
-    return SearchAdvanx::get_instance();
+    try {
+        return SearchAdvanx::get_instance();
+    } catch (Exception $e) {
+        error_log('SearchAdvanx Error: ' . $e->getMessage());
+        return false;
+    }
 }
 
 // Initialize the plugin
-add_action('plugins_loaded', 'searchadvanx');
+add_action('plugins_loaded', function() {
+    if (class_exists('SearchAdvanx')) {
+        searchadvanx();
+    } else {
+        add_action('admin_notices', function() {
+            echo '<div class="notice notice-error"><p>SearchAdvanx: Failed to load plugin classes. Please check your installation.</p></div>';
+        });
+    }
+});
 
 // Activation hook
 register_activation_hook(__FILE__, function() {

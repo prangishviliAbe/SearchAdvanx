@@ -88,11 +88,20 @@ class SearchAdvanx {
      * Initialize classes
      */
     private function init_classes() {
-        $this->database = new SearchAdvanx_Database();
-        $this->api = new SearchAdvanx_API();
-        
-        if (is_admin()) {
-            $this->admin = new SearchAdvanx_Admin();
+        try {
+            if (class_exists('SearchAdvanx_Database')) {
+                $this->database = new SearchAdvanx_Database();
+            }
+            
+            if (class_exists('SearchAdvanx_API')) {
+                $this->api = new SearchAdvanx_API();
+            }
+            
+            if (is_admin() && class_exists('SearchAdvanx_Admin')) {
+                $this->admin = new SearchAdvanx_Admin();
+            }
+        } catch (Exception $e) {
+            error_log('SearchAdvanx class initialization error: ' . $e->getMessage());
         }
     }
     
