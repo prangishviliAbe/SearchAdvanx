@@ -19,6 +19,14 @@
             var postType = container.data('post-type') || container.find('[name="searchadvanx_post_type"]').val();
             var resultsPerPage = container.data('results-per-page');
             
+            // Debug: Log all data attributes
+            console.log('Container data attributes:', {
+                'post-type': container.data('post-type'),
+                'results-per-page': container.data('results-per-page'),
+                'include-external': container.data('include-external'),
+                'include-external-raw': container.attr('data-include-external')
+            });
+            
             if (!query.trim()) {
                 return;
             }

@@ -11,6 +11,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
+<!-- SearchAdvanx Debug: include_external = "<?php echo esc_attr($atts['include_external']); ?>" -->
 <div class="searchadvanx-container" data-post-type="<?php echo esc_attr($atts['post_type']); ?>" data-results-per-page="<?php echo esc_attr($atts['results_per_page']); ?>" data-include-external="<?php echo esc_attr($atts['include_external']); ?>">
     <form class="searchadvanx-form">
         <div class="searchadvanx-input-group">
