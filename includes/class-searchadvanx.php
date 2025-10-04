@@ -155,11 +155,20 @@ class SearchAdvanx {
         $include_external = isset($_POST['include_external']) && $_POST['include_external'] === 'true';
         $filters = isset($_POST['filters']) ? $_POST['filters'] : array();
         
+        // Debug logging
+        error_log('SearchAdvanx AJAX Search Debug:');
+        error_log('Query: ' . $query);
+        error_log('Include External: ' . ($include_external ? 'true' : 'false'));
+        error_log('POST data: ' . print_r($_POST, true));
+        
         if ($include_external) {
             // Use external search endpoint for combined results
             $request = new WP_REST_Request('POST', '/searchadvanx/v1/external-search');
             $request->set_param('query', $query);
-            $request->set_param('post_type', $post_type);
+            $request->set_param('filters', array(
+                'post_type' => $post_type,
+                'posts_per_page' => intval($_POST['posts_per_page'] ?? 10)
+            ));
             
             // Get external sites configuration
             $options = get_option('searchadvanx_options', array());

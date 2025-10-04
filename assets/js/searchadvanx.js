@@ -60,9 +60,14 @@
                 success: function(response) {
                     container.find('.searchadvanx-loading').hide();
                     
+                    // Debug logging
+                    console.log('SearchAdvanx AJAX Response:', response);
+                    console.log('Include External:', includeExternal);
+                    
                     if (response.success && response.results && response.results.length > 0) {
                         displayResults(container, response);
                     } else {
+                        console.log('No results - Response success:', response.success, 'Results length:', response.results ? response.results.length : 'undefined');
                         displayNoResults(container);
                     }
                 },

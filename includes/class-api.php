@@ -163,6 +163,9 @@ class SearchAdvanx_API {
         error_log('Query: ' . $query);
         error_log('Sites provided: ' . print_r($sites, true));
         
+        // Initialize results array
+        $all_results = array();
+        
         // Start with local search results
         $local_request = new WP_REST_Request('GET', '/searchadvanx/v1/search');
         $local_request->set_param('query', $query);
@@ -180,6 +183,8 @@ class SearchAdvanx_API {
             }
         }
         
+        error_log('Local search results: ' . count($all_results));
+        
         // If no sites provided, use configured sites
         if (empty($sites)) {
             $options = get_option('searchadvanx_options');
@@ -195,7 +200,6 @@ class SearchAdvanx_API {
             error_log('Valid sites for searching: ' . print_r($sites, true));
         }
         
-        $all_results = array();
         $options = get_option('searchadvanx_options');
         $timeout = isset($options['api_timeout']) ? intval($options['api_timeout']) : 30;
         $cache_duration = isset($options['api_cache_duration']) ? intval($options['api_cache_duration']) : 5;
