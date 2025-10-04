@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 ?>
 
 <!-- SearchAdvanx Debug: include_external = "<?php echo esc_attr($atts['include_external']); ?>" -->
-<div class="searchadvanx-container" data-post-type="<?php echo esc_attr($atts['post_type']); ?>" data-results-per-page="<?php echo esc_attr($atts['results_per_page']); ?>" data-include-external="<?php echo esc_attr($atts['include_external']); ?>" data-display-style="<?php echo esc_attr($atts['display_style']); ?>">
+<div class="searchadvanx-container searchadvanx-style-<?php echo esc_attr($atts['display_style']); ?> searchadvanx-columns-<?php echo esc_attr($atts['grid_columns']); ?>" data-post-type="<?php echo esc_attr($atts['post_type']); ?>" data-results-per-page="<?php echo esc_attr($atts['results_per_page']); ?>" data-include-external="<?php echo esc_attr($atts['include_external']); ?>" data-display-style="<?php echo esc_attr($atts['display_style']); ?>" data-grid-columns="<?php echo esc_attr($atts['grid_columns']); ?>">
     <form class="searchadvanx-form">
         <div class="searchadvanx-input-group">
             <input type="text" name="searchadvanx_query" placeholder="<?php echo esc_attr($atts['placeholder']); ?>" class="searchadvanx-input">

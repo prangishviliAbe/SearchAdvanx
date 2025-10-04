@@ -250,6 +250,7 @@ class SearchAdvanx {
             'template' => 'default',
             'include_external' => 'false',
             'display_style' => 'list',
+            'grid_columns' => 'auto',
         ), $atts);
         
         ob_start();

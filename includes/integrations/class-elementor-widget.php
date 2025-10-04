@@ -137,6 +137,32 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             ]
         );
         
+        $this->add_control(
+            'grid_columns',
+            [
+                'label' => __('Grid Columns', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'auto',
+                'options' => [
+                    'auto' => __('Auto (Responsive)', 'searchadvanx'),
+                    '2' => __('2 Columns', 'searchadvanx'),
+                    '3' => __('3 Columns', 'searchadvanx'),
+                    '4' => __('4 Columns', 'searchadvanx'),
+                    '5' => __('5 Columns', 'searchadvanx'),
+                ],
+                'condition' => [
+                    'display_style!' => 'list',
+                ],
+                'description' => __('Number of columns for grid layouts', 'searchadvanx'),
+                'selectors' => [
+                    '{{WRAPPER}} .searchadvanx-results-list[data-grid-columns="2"]' => 'grid-template-columns: repeat(2, 1fr);',
+                    '{{WRAPPER}} .searchadvanx-results-list[data-grid-columns="3"]' => 'grid-template-columns: repeat(3, 1fr);',
+                    '{{WRAPPER}} .searchadvanx-results-list[data-grid-columns="4"]' => 'grid-template-columns: repeat(4, 1fr);',
+                    '{{WRAPPER}} .searchadvanx-results-list[data-grid-columns="5"]' => 'grid-template-columns: repeat(5, 1fr);',
+                ],
+            ]
+        );
+        
         $this->end_controls_section();
         
         // Style Section
@@ -273,6 +299,7 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             'results_per_page' => $settings['results_per_page'],
             'include_external' => $settings['include_external'] === 'yes' ? 'true' : 'false',
             'display_style' => $settings['display_style'],
+            'grid_columns' => $settings['grid_columns'],
         );
         
         $searchadvanx = SearchAdvanx::get_instance();

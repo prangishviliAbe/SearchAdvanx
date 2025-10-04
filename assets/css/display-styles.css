@@ -127,6 +127,23 @@
     margin: 30px 0;
 }
 
+/* Fixed Grid Columns */
+.searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="5"] {
+    grid-template-columns: repeat(5, 1fr);
+}
+
 .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-result-item {
     background: #fff;
     border-radius: 16px;
@@ -196,6 +213,23 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin: 30px 0;
+}
+
+/* Fixed Grid Columns for Modern Grid */
+.searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="5"] {
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-result-item {
@@ -296,11 +330,47 @@
    Responsive Design
    ========================================================================== */
 
+@media (max-width: 1200px) {
+    /* Reduce columns on large tablets */
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="5"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="5"] {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="4"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="4"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    /* Medium tablets */
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="5"],
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="4"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="5"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="4"] {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="3"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="3"] {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
+    /* Mobile devices - all grids become single column except 2-column stays 2 */
     .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list,
     .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    /* Keep 2-column layout on mobile for better use of space */
+    .searchadvanx-container[data-display-style="grid-cards"] .searchadvanx-results-list[data-grid-columns="2"],
+    .searchadvanx-container[data-display-style="grid-modern"] .searchadvanx-results-list[data-grid-columns="2"] {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     
     .searchadvanx-container[data-display-style="list"] .searchadvanx-result-item img {

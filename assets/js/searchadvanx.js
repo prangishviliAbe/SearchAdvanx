@@ -98,7 +98,8 @@
         // Display search results
         function displayResults(container, response) {
             var displayStyle = container.attr('data-display-style') || 'list';
-            var resultsHtml = '<div class="searchadvanx-results-list">';
+            var gridColumns = container.attr('data-grid-columns') || 'auto';
+            var resultsHtml = '<div class="searchadvanx-results-list" data-grid-columns="' + gridColumns + '">';
             
             response.results.forEach(function(result) {
                 var featuredImage = result.featured_image ? 
