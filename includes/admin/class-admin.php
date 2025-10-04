@@ -28,12 +28,52 @@ class SearchAdvanx_Admin {
      * Add admin menu
      */
     public function admin_menu() {
-        add_options_page(
-            'SearchAdvanx Settings',
-            'SearchAdvanx',
-            'manage_options',
-            'searchadvanx',
-            array($this, 'admin_page')
+        // Add main menu page in the left sidebar
+        add_menu_page(
+            'SearchAdvanx',                    // Page title
+            'SearchAdvanx',                    // Menu title
+            'manage_options',                  // Capability
+            'searchadvanx',                    // Menu slug
+            array($this, 'admin_page'),        // Callback function
+            'dashicons-search',                // Icon (search icon)
+            30                                 // Position (after Comments)
+        );
+        
+        // Add submenu pages
+        add_submenu_page(
+            'searchadvanx',                    // Parent slug
+            'Settings',                        // Page title
+            'Settings',                        // Menu title
+            'manage_options',                  // Capability
+            'searchadvanx',                    // Menu slug (same as parent for main page)
+            array($this, 'admin_page')         // Callback function
+        );
+        
+        add_submenu_page(
+            'searchadvanx',                    // Parent slug
+            'External Sites',                  // Page title
+            'External Sites',                 // Menu title
+            'manage_options',                  // Capability
+            'searchadvanx-sites',             // Menu slug
+            array($this, 'sites_page')        // Callback function
+        );
+        
+        add_submenu_page(
+            'searchadvanx',                    // Parent slug
+            'Analytics',                       // Page title
+            'Analytics',                      // Menu title
+            'manage_options',                  // Capability
+            'searchadvanx-analytics',         // Menu slug
+            array($this, 'analytics_page')    // Callback function
+        );
+        
+        add_submenu_page(
+            'searchadvanx',                    // Parent slug
+            'API Documentation',               // Page title
+            'API Docs',                       // Menu title
+            'manage_options',                  // Capability
+            'searchadvanx-api-docs',          // Menu slug
+            array($this, 'api_docs_page')     // Callback function
         );
     }
     
@@ -121,7 +161,15 @@ class SearchAdvanx_Admin {
      * Enqueue admin scripts and styles
      */
     public function admin_enqueue_scripts($hook) {
-        if ($hook !== 'settings_page_searchadvanx') {
+        // Load assets on all SearchAdvanx admin pages
+        $searchadvanx_pages = array(
+            'toplevel_page_searchadvanx',
+            'searchadvanx_page_searchadvanx-sites',
+            'searchadvanx_page_searchadvanx-analytics', 
+            'searchadvanx_page_searchadvanx-api-docs'
+        );
+        
+        if (!in_array($hook, $searchadvanx_pages)) {
             return;
         }
         
@@ -151,44 +199,86 @@ class SearchAdvanx_Admin {
      * Admin page callback
      */
     public function admin_page() {
+        $options = get_option('searchadvanx_options');
+        $database = new SearchAdvanx_Database();
+        $total_searches = $database->get_total_searches();
         ?>
         <div class="wrap">
-            <h1>SearchAdvanx Settings</h1>
+            <h1>
+                <span class="dashicons dashicons-search" style="font-size: 1.2em; margin-right: 8px;"></span>
+                SearchAdvanx Dashboard
+            </h1>
             
-            <div class="nav-tab-wrapper">
-                <a href="#settings" class="nav-tab nav-tab-active">Settings</a>
-                <a href="#api-management" class="nav-tab">REST API Management</a>
-                <a href="#analytics" class="nav-tab">Analytics</a>
-                <a href="#api-docs" class="nav-tab">API Documentation</a>
+            <!-- Quick Stats Cards -->
+            <div class="searchadvanx-dashboard-cards" style="display: flex; gap: 20px; margin: 20px 0;">
+                <div class="card" style="flex: 1; padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px;">
+                    <h3 style="margin-top: 0;">Total Searches</h3>
+                    <p style="font-size: 2em; margin: 0; color: #0073aa;"><?php echo number_format($total_searches); ?></p>
+                </div>
+                <div class="card" style="flex: 1; padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px;">
+                    <h3 style="margin-top: 0;">Plugin Version</h3>
+                    <p style="font-size: 2em; margin: 0; color: #00a32a;"><?php echo SEARCHADVANX_VERSION; ?></p>
+                </div>
+                <div class="card" style="flex: 1; padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px;">
+                    <h3 style="margin-top: 0;">Status</h3>
+                    <p style="font-size: 2em; margin: 0; color: #00a32a;">Active</p>
+                </div>
             </div>
             
-            <div id="settings" class="tab-content">
+            <!-- Quick Settings Form -->
+            <div class="searchadvanx-quick-settings" style="background: #fff; padding: 20px; border: 1px solid #ccd0d4; border-radius: 4px; margin: 20px 0;">
+                <h2>Quick Settings</h2>
                 <form method="post" action="options.php">
                     <?php
                     settings_fields('searchadvanx_settings');
                     do_settings_sections('searchadvanx');
-                    submit_button();
+                    submit_button('Save Settings');
                     ?>
                 </form>
             </div>
             
-            <div id="api-management" class="tab-content" style="display: none;">
-                <form method="post" action="options.php">
-                    <?php
-                    settings_fields('searchadvanx_settings');
-                    echo '<h2>REST API Configuration</h2>';
-                    do_settings_sections('searchadvanx');
-                    submit_button('Save API Settings');
-                    ?>
-                </form>
+            <!-- Quick Access Links -->
+            <div class="searchadvanx-quick-links" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                <div class="card" style="padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px; text-align: center;">
+                    <h3><span class="dashicons dashicons-admin-site-alt3"></span> External Sites</h3>
+                    <p>Manage external WordPress sites for cross-site searching.</p>
+                    <a href="<?php echo admin_url('admin.php?page=searchadvanx-sites'); ?>" class="button button-primary">Manage Sites</a>
+                </div>
+                <div class="card" style="padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px; text-align: center;">
+                    <h3><span class="dashicons dashicons-chart-line"></span> Analytics</h3>
+                    <p>View search statistics and performance metrics.</p>
+                    <a href="<?php echo admin_url('admin.php?page=searchadvanx-analytics'); ?>" class="button button-primary">View Analytics</a>
+                </div>
+                <div class="card" style="padding: 20px; background: #fff; border: 1px solid #ccd0d4; border-radius: 4px; text-align: center;">
+                    <h3><span class="dashicons dashicons-media-code"></span> API Documentation</h3>
+                    <p>Learn how to use the SearchAdvanx REST API.</p>
+                    <a href="<?php echo admin_url('admin.php?page=searchadvanx-api-docs'); ?>" class="button button-primary">View API Docs</a>
+                </div>
             </div>
             
-            <div id="analytics" class="tab-content" style="display: none;">
-                <?php $this->display_analytics(); ?>
-            </div>
-            
-            <div id="api-docs" class="tab-content" style="display: none;">
-                <?php $this->display_api_docs(); ?>
+            <!-- Usage Instructions -->
+            <div class="searchadvanx-instructions" style="background: #fff; padding: 20px; border: 1px solid #ccd0d4; border-radius: 4px; margin: 20px 0;">
+                <h2>How to Use SearchAdvanx</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4>🎯 Shortcode Usage</h4>
+                        <p>Add the search form to any post or page:</p>
+                        <code style="background: #f0f0f1; padding: 5px 10px; border-radius: 3px;">[searchadvanx]</code>
+                    </div>
+                    <div>
+                        <h4>🧩 Elementor Widget</h4>
+                        <p>Find "SearchAdvanx" in your Elementor widgets and drag it to your page.</p>
+                    </div>
+                    <div>
+                        <h4>⚡ JetEngine Integration</h4>
+                        <p>Use "SearchAdvanx Query" as a custom query type in JetEngine listings.</p>
+                    </div>
+                    <div>
+                        <h4>🔌 REST API</h4>
+                        <p>Use the API endpoints for custom integrations:</p>
+                        <code style="background: #f0f0f1; padding: 5px 10px; border-radius: 3px;">/wp-json/searchadvanx/v1/search</code>
+                    </div>
+                </div>
             </div>
         </div>
         <?php
@@ -305,5 +395,47 @@ class SearchAdvanx_Admin {
      */
     private function display_api_docs() {
         include SEARCHADVANX_PLUGIN_DIR . 'includes/admin/api-docs.php';
+    }
+    
+    /**
+     * Sites management page callback
+     */
+    public function sites_page() {
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            <div class="searchadvanx-admin-content">
+                <?php $this->display_external_sites(); ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    /**
+     * Analytics page callback
+     */
+    public function analytics_page() {
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            <div class="searchadvanx-admin-content">
+                <?php $this->display_analytics(); ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    /**
+     * API documentation page callback
+     */
+    public function api_docs_page() {
+        ?>
+        <div class="wrap">
+            <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
+            <div class="searchadvanx-admin-content">
+                <?php $this->display_api_docs(); ?>
+            </div>
+        </div>
+        <?php
     }
 }

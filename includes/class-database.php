@@ -56,6 +56,21 @@ class SearchAdvanx_Database {
     }
     
     /**
+     * Get total number of searches
+     */
+    public function get_total_searches() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'searchadvanx_logs';
+        
+        // Check if table exists first
+        if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+            return 0;
+        }
+        
+        return (int) $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+    }
+    
+    /**
      * Get search analytics
      */
     public function get_search_analytics() {
@@ -65,7 +80,7 @@ class SearchAdvanx_Database {
         return array(
             'total_searches' => $wpdb->get_var("SELECT COUNT(*) FROM $table_name"),
             'recent_searches' => $wpdb->get_results("SELECT * FROM $table_name ORDER BY search_date DESC LIMIT 20"),
-            'popular_searches' => $wpdb->get_results("SELECT search_query, COUNT(*) as count FROM $table_name GROUP BY search_query ORDER BY count DESC LIMIT 10"),
+            'popular_searches' => $wpdb->get_results("SELECT search_query, COUNT(*) as count FROM $table_name GROUP BY search_query ORDER BY search_query DESC LIMIT 10"),
         );
     }
 }
