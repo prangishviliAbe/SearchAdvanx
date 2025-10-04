@@ -15,6 +15,19 @@ $external_sites = isset($options['external_sites_config']) ? $options['external_
 ?>
 
 <div id="searchadvanx-sites-manager">
+    
+    <div class="searchadvanx-help-section" style="margin-bottom: 20px; padding: 15px; background: #e7f3ff; border-left: 4px solid #0073aa;">
+        <h3 style="margin-top: 0;">🔗 How to Connect External Sites</h3>
+        <p><strong>To allow this site to search other WordPress sites:</strong></p>
+        <ol>
+            <li><strong>On the target site:</strong> Install SearchAdvanx plugin</li>
+            <li><strong>On the target site:</strong> Go to SearchAdvanx > Settings and generate an API key</li>
+            <li><strong>On this site:</strong> Add the target site configuration below with the API key</li>
+            <li><strong>Test:</strong> Use the external search API endpoint to verify connection</li>
+        </ol>
+        <p><strong>Search endpoint format:</strong> <code>https://target-site.com/wp-json/searchadvanx/v1/search</code></p>
+    </div>
+    
     <div id="sites-list">
         <?php if (!empty($external_sites)): ?>
             <?php foreach ($external_sites as $index => $site): ?>

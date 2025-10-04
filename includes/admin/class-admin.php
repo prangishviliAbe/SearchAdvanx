@@ -337,8 +337,91 @@ class SearchAdvanx_Admin {
     public function api_key_callback() {
         $options = get_option('searchadvanx_options');
         $api_key = isset($options['api_key']) ? $options['api_key'] : '';
-        echo '<input type="password" name="searchadvanx_options[api_key]" value="' . esc_attr($api_key) . '" class="regular-text" />';
-        echo '<p class="description">API key for external site authentication.</p>';
+        
+        echo '<div class="searchadvanx-api-key-field">';
+        echo '<input type="text" id="searchadvanx_api_key" name="searchadvanx_options[api_key]" value="' . esc_attr($api_key) . '" class="regular-text" readonly />';
+        echo '<button type="button" id="generate_api_key" class="button" style="margin-left: 10px;">Generate New Key</button>';
+        echo '<button type="button" id="show_api_key" class="button" style="margin-left: 5px;">👁️ Show</button>';
+        echo '<button type="button" id="copy_api_key" class="button" style="margin-left: 5px;">📋 Copy</button>';
+        echo '</div>';
+        
+        echo '<p class="description">';
+        echo '<strong>API Key for External Site Authentication:</strong><br>';
+        echo '• Use this key to allow other SearchAdvanx sites to search your content<br>';
+        echo '• Share this key with sites that need to search your WordPress content<br>';
+        echo '• Keep this key secure - treat it like a password<br>';
+        echo '• Generate a new key if compromised';
+        echo '</p>';
+        
+        echo '<div id="api_key_usage" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border-left: 4px solid #0073aa;">';
+        echo '<h4 style="margin-top: 0;">🔗 How to Connect External Sites:</h4>';
+        echo '<ol>';
+        echo '<li><strong>On this site:</strong> Copy the API key above</li>';
+        echo '<li><strong>On external site:</strong> Go to SearchAdvanx > External Sites</li>';
+        echo '<li><strong>Add site config:</strong> Enter this site\'s URL and the API key</li>';
+        echo '<li><strong>Test connection:</strong> External site can now search your content</li>';
+        echo '</ol>';
+        echo '<p><strong>Your site\'s search endpoint:</strong> <code>' . home_url('/wp-json/searchadvanx/v1/search') . '</code></p>';
+        echo '</div>';
+        
+        // Add JavaScript for API key functionality
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            // Generate new API key
+            $('#generate_api_key').click(function() {
+                if (confirm('Generate a new API key? This will replace the current key and may break existing connections.')) {
+                    var newKey = generateApiKey();
+                    $('#searchadvanx_api_key').val(newKey);
+                    $('#searchadvanx_api_key').attr('type', 'text');
+                    alert('New API key generated! Remember to save settings and update external sites.');
+                }
+            });
+            
+            // Show/hide API key
+            $('#show_api_key').click(function() {
+                var input = $('#searchadvanx_api_key');
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                    $(this).text('🙈 Hide');
+                } else {
+                    input.attr('type', 'password');
+                    $(this).text('👁️ Show');
+                }
+            });
+            
+            // Copy API key to clipboard
+            $('#copy_api_key').click(function() {
+                var apiKey = $('#searchadvanx_api_key').val();
+                if (apiKey) {
+                    navigator.clipboard.writeText(apiKey).then(function() {
+                        alert('API key copied to clipboard!');
+                    }).catch(function() {
+                        // Fallback for older browsers
+                        $('#searchadvanx_api_key').select();
+                        document.execCommand('copy');
+                        alert('API key copied to clipboard!');
+                    });
+                } else {
+                    alert('No API key to copy. Generate one first.');
+                }
+            });
+            
+            // Generate secure random API key
+            function generateApiKey() {
+                var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                var result = '';
+                for (var i = 0; i < 32; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            }
+            
+            // Set initial state
+            $('#searchadvanx_api_key').attr('type', 'password');
+        });
+        </script>
+        <?php
     }
     
     /**
