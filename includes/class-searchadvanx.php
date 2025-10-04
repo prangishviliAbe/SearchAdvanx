@@ -82,6 +82,10 @@ class SearchAdvanx {
         // JetEngine integration
         add_filter('jet-engine/listing/custom-query', array($this, 'jet_engine_custom_query'), 10, 2);
         add_filter('jet-engine/query-builder/types/search-query', array($this, 'jet_engine_query_type'));
+        
+        // Pro version hooks
+        add_filter('plugin_row_meta', array($this, 'add_plugin_row_meta'), 10, 2);
+        add_action('admin_notices', array($this, 'show_pro_upgrade_notice'));
     }
     
     /**
@@ -325,5 +329,47 @@ class SearchAdvanx {
         
         // Clear any cached data
         wp_cache_flush();
+    }
+    
+    /**
+     * Add Pro upgrade link to plugin row
+     */
+    public function add_plugin_row_meta($links, $file) {
+        if (plugin_basename(SEARCHADVANX_PLUGIN_FILE) === $file) {
+            $pro_link = '<a href="https://github.com/prangishviliAbe/SearchAdvanx" target="_blank" style="color: #667eea; font-weight: 600;">🚀 Get Pro Version</a>';
+            $links[] = $pro_link;
+        }
+        return $links;
+    }
+    
+    /**
+     * Show Pro upgrade notice (periodically)
+     */
+    public function show_pro_upgrade_notice() {
+        // Only show on SearchAdvanx admin pages
+        $screen = get_current_screen();
+        if (!$screen || strpos($screen->id, 'searchadvanx') === false) {
+            return;
+        }
+        
+        // Show notice only once per week
+        $last_shown = get_option('searchadvanx_pro_notice_last_shown', 0);
+        if (time() - $last_shown < WEEK_IN_SECONDS) {
+            return;
+        }
+        
+        // Update last shown time
+        update_option('searchadvanx_pro_notice_last_shown', time());
+        ?>
+        <div class="notice notice-info is-dismissible" style="border-left-color: #667eea !important;">
+            <div style="display: flex; align-items: center; padding: 10px 0;">
+                <div style="font-size: 24px; margin-right: 15px;">🚀</div>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">SearchAdvanx Pro is Coming Soon!</h3>
+                    <p style="margin: 0;">Get ready for advanced search filters, premium themes, detailed analytics, and priority support. <a href="https://github.com/prangishviliAbe/SearchAdvanx" target="_blank" style="color: #667eea; font-weight: 600;">⭐ Star us on GitHub</a> to be notified when it's released!</p>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 }

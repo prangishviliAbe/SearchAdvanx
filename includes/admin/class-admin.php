@@ -258,6 +258,9 @@ class SearchAdvanx_Admin {
                 </div>
             </div>
             
+            <!-- Pro Notice -->
+            <?php include SEARCHADVANX_PLUGIN_DIR . 'includes/admin/pro-notice.php'; ?>
+            
             <!-- Quick Settings Form -->
             <div class="searchadvanx-quick-settings" style="background: #fff; padding: 20px; border: 1px solid #ccd0d4; border-radius: 4px; margin: 20px 0;">
                 <h2>Quick Settings</h2>

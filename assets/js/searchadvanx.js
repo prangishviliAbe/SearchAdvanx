@@ -146,6 +146,16 @@
             resultsHtml += '</div>';
             resultsHtml += `<div class="searchadvanx-results-count">Found ${response.total} results</div>`;
             
+            // Add Pro teaser (occasionally)
+            if (Math.random() < 0.3) { // Show 30% of the time
+                resultsHtml += `
+                    <div class="searchadvanx-pro-teaser" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border-radius: 8px; margin: 20px 0; text-align: center; cursor: pointer;" onclick="window.open('https://github.com/prangishviliAbe/SearchAdvanx', '_blank')">
+                        <div style="font-size: 18px; margin-bottom: 5px;">🚀 SearchAdvanx Pro Coming Soon!</div>
+                        <div style="font-size: 14px; opacity: 0.9;">Advanced filters, premium themes, analytics & more. Click to learn more!</div>
+                    </div>
+                `;
+            }
+            
             container.find('.searchadvanx-results').html(resultsHtml);
         }
         

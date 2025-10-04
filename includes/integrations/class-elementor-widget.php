@@ -230,6 +230,33 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
         );
         
         $this->end_controls_section();
+        
+        // Pro Features Section
+        $this->start_controls_section(
+            'pro_features_section',
+            [
+                'label' => __('🚀 Pro Features', 'searchadvanx'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+        
+        $this->add_control(
+            'pro_notice',
+            [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => '
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                        <h3 style="color: white; margin: 0 0 10px 0;">✨ SearchAdvanx Pro Coming Soon!</h3>
+                        <p style="margin: 0 0 15px 0; opacity: 0.9;">Advanced search filters, premium themes, analytics dashboard, and more!</p>
+                        <a href="https://github.com/prangishviliAbe/SearchAdvanx" target="_blank" style="display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 8px 16px; border-radius: 20px; text-decoration: none; border: 1px solid rgba(255,255,255,0.3);">
+                            ⭐ Star on GitHub for Updates
+                        </a>
+                    </div>
+                ',
+            ]
+        );
+        
+        $this->end_controls_section();
     }
     
     /**
