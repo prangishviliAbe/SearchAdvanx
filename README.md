@@ -7,7 +7,7 @@ Advanced WordPress search engine plugin with Elementor and JetEngine support, in
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue)
 ![License](https://img.shields.io/badge/License-GPL%20v2%2B-blue)
-![Version](https://img.shields.io/badge/Version-1.1.0-green)
+![Version](https://img.shields.io/badge/Version-1.2.0-green)
 
 ## 🚀 Features
 
@@ -327,6 +327,15 @@ The plugin is translation-ready with:
 
 ## 📝 Changelog
 
+### Version 1.2.0
+
+- **🔑 NEW: Enhanced API Key Management** - Built-in secure key generator with professional interface
+- **🎛️ Professional Admin Tools** - Show/hide toggle, copy to clipboard, visual instructions
+- **📚 Comprehensive Documentation** - Complete setup guide with real-world examples
+- **🔧 Improved Site Configuration** - Step-by-step external site connection process
+- **🛡️ Security Best Practices** - Key rotation, HTTPS enforcement, access control
+- **🌐 Advanced Examples** - Corporate networks, blog networks, multi-site scenarios
+
 ### Version 1.1.0
 
 - **🚀 NEW: Automatic Plugin Updates** - Updates directly from GitHub
@@ -361,19 +370,20 @@ The plugin is translation-ready with:
 
 | Version                                                                       | Date       | Status     | Download                                                                           |
 | ----------------------------------------------------------------------------- | ---------- | ---------- | ---------------------------------------------------------------------------------- |
-| [v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) | 2025-10-04 | **Latest** | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) |
+| [v1.2.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) | 2025-10-04 | **Latest** | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.2.0) |
+| [v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) |
 | [v1.0.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) |
 | [v1.0.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) | 2025-10-04 | Stable     | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) |
 
-### 🚀 Latest Release - v1.1.0
+### 🚀 Latest Release - v1.2.0
 
-**Automatic Plugin Updates System**
+**Enhanced API Key Management System**
 
-- ✅ Updates directly from GitHub
-- ✅ WordPress-native update process
-- ✅ Configurable update channels
-- ✅ Professional admin interface
-- ✅ Manual update checks
+- ✅ Built-in secure API key generator
+- ✅ Professional admin interface with show/hide toggle
+- ✅ One-click copy to clipboard functionality
+- ✅ Comprehensive setup documentation
+- ✅ Step-by-step external site connection guide
 
 [📋 **View All Releases**](RELEASES.md) | [🔗 **GitHub Releases**](https://github.com/prangishviliAbe/SearchAdvanx/releases)
 

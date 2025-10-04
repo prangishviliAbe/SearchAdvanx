@@ -7,6 +7,7 @@ This guide explains how to generate API keys and connect external WordPress site
 API keys provide secure authentication between SearchAdvanx installations on different WordPress sites. They ensure that only authorized sites can perform searches on your content.
 
 ### How It Works
+
 1. **Site A** (requesting site) wants to search **Site B** (target site)
 2. **Site A** sends search request with API key in Authorization header
 3. **Site B** validates the API key and returns search results
@@ -19,13 +20,15 @@ API keys provide secure authentication between SearchAdvanx installations on dif
 ### Step 1: Generate API Key on Target Site (Site B)
 
 **Option A: Manual Generation**
+
 ```php
 // Generate a secure random API key (32 characters)
-$api_key = bin2hex(random_bytes(16)); 
+$api_key = bin2hex(random_bytes(16));
 // Example: a1b2c3d4e5f6789012345678901234ab
 ```
 
 **Option B: Use Online Generator**
+
 - Visit: https://randomkeygen.com/
 - Copy a "CodeIgniter Encryption Key" (32 chars)
 - Or use WordPress secret key generator: https://api.wordpress.org/secret-key/1.1/salt/
@@ -67,31 +70,35 @@ $api_key = bin2hex(random_bytes(16));
 **Scenario:** Main company site wants to search product documentation and support sites.
 
 **Sites:**
+
 - Main Site: `https://company.com` (Site A)
-- Docs Site: `https://docs.company.com` (Site B)  
+- Docs Site: `https://docs.company.com` (Site B)
 - Support Site: `https://support.company.com` (Site C)
 
 **Setup:**
 
 1. **On Docs Site (Site B):**
+
    ```
    SearchAdvanx > Settings > API Key: abc123def456
    ```
 
 2. **On Support Site (Site C):**
+
    ```
    SearchAdvanx > Settings > API Key: xyz789uvw012
    ```
 
 3. **On Main Site (Site A):**
+
    ```
    SearchAdvanx > External Sites:
-   
+
    Site 1:
    - Name: Documentation
    - URL: https://docs.company.com
    - API Key: abc123def456
-   
+
    Site 2:
    - Name: Support Center
    - URL: https://support.company.com
@@ -103,6 +110,7 @@ $api_key = bin2hex(random_bytes(16));
 **Scenario:** Multiple sites want to search each other's content.
 
 **Sites:**
+
 - Blog A: `https://blog-a.com`
 - Blog B: `https://blog-b.com`
 - Blog C: `https://blog-c.com`
@@ -110,6 +118,7 @@ $api_key = bin2hex(random_bytes(16));
 **Setup (each site needs the others configured):**
 
 **On Blog A:**
+
 ```
 Own API Key: key-blog-a-123
 External Sites:
@@ -118,6 +127,7 @@ External Sites:
 ```
 
 **On Blog B:**
+
 ```
 Own API Key: key-blog-b-456
 External Sites:
@@ -126,6 +136,7 @@ External Sites:
 ```
 
 **On Blog C:**
+
 ```
 Own API Key: key-blog-c-789
 External Sites:
@@ -140,6 +151,7 @@ External Sites:
 SearchAdvanx now includes a built-in API key generator in the admin interface:
 
 ### Using the Generator
+
 1. Go to **SearchAdvanx > Settings**
 2. In the **API Key** field, click **"Generate New Key"**
 3. A secure 32-character key is automatically created
@@ -148,6 +160,7 @@ SearchAdvanx now includes a built-in API key generator in the admin interface:
 6. **Save Settings** to activate the key
 
 ### Features
+
 - **Secure Generation**: Uses cryptographically secure random generation
 - **32-Character Keys**: Optimal length for security and usability
 - **Copy to Clipboard**: Easy sharing with other sites
@@ -159,48 +172,54 @@ SearchAdvanx now includes a built-in API key generator in the admin interface:
 ## 🔌 API Endpoints
 
 ### Local Search Endpoint
+
 ```
 GET /wp-json/searchadvanx/v1/search
 ```
 
 **Parameters:**
+
 - `query` (required): Search term
 - `post_types`: Array of post types to search
 - `meta_query`: Custom field queries
 
 **Headers (for protected endpoints):**
+
 ```
 Authorization: Bearer YOUR_API_KEY
 ```
 
 ### External Search Endpoint
+
 ```
 POST /wp-json/searchadvanx/v1/external-search
 ```
 
 **Parameters:**
+
 - `query` (required): Search term
 - `sites`: Array of site configurations
 - `limit`: Number of results per site
 
 **Example Request:**
+
 ```javascript
-fetch('/wp-json/searchadvanx/v1/external-search', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        query: 'wordpress tutorials',
-        sites: [
-            {
-                url: 'https://docs.example.com',
-                name: 'Documentation',
-                api_key: 'abc123def456'
-            }
-        ],
-        limit: 5
-    })
+fetch("/wp-json/searchadvanx/v1/external-search", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    query: "wordpress tutorials",
+    sites: [
+      {
+        url: "https://docs.example.com",
+        name: "Documentation",
+        api_key: "abc123def456",
+      },
+    ],
+    limit: 5,
+  }),
 });
 ```
 
@@ -218,6 +237,7 @@ fetch('/wp-json/searchadvanx/v1/external-search', {
 ### Method 2: cURL Testing
 
 **Test external site connection:**
+
 ```bash
 curl -X GET \
   "https://target-site.com/wp-json/searchadvanx/v1/search?query=test" \
@@ -225,6 +245,7 @@ curl -X GET \
 ```
 
 **Expected Response:**
+
 ```json
 {
     "success": true,
@@ -239,6 +260,7 @@ curl -X GET \
 ### Method 3: Browser Testing
 
 **Public endpoint (no API key required):**
+
 ```
 https://yoursite.com/wp-json/searchadvanx/v1/search?query=test
 ```
@@ -251,18 +273,21 @@ Add `Authorization: Bearer YOUR_API_KEY` header
 ## 🔒 Security Best Practices
 
 ### API Key Management
+
 - **Use Unique Keys**: Different key for each external site connection
 - **Regular Rotation**: Change keys periodically (quarterly recommended)
 - **Secure Storage**: Never expose keys in frontend code or public repositories
 - **Access Logging**: Monitor API usage in SearchAdvanx > Analytics
 
 ### Site Protection
+
 - **Enable Authentication**: Always set an API key for production sites
 - **Rate Limiting**: Monitor for unusual search activity
 - **HTTPS Only**: Use SSL certificates for all API communications
 - **WordPress Security**: Keep WordPress and plugins updated
 
 ### Network Security
+
 - **Firewall Rules**: Restrict API access to known IP ranges if possible
 - **VPN Access**: Use VPN for sensitive internal site connections
 - **Regular Audits**: Review external site configurations monthly
@@ -274,21 +299,25 @@ Add `Authorization: Bearer YOUR_API_KEY` header
 ### Common Issues
 
 **"Unauthorized" Error (401):**
+
 - Check API key is correctly set on target site
 - Verify API key in external site configuration
 - Ensure key has no extra spaces or characters
 
 **"Site Not Found" Error:**
+
 - Verify target site URL is correct and accessible
 - Check SearchAdvanx plugin is installed and activated on target site
 - Test site accessibility: `https://target-site.com/wp-json/`
 
 **"No Results" Response:**
+
 - Target site may have no matching content
 - Check post types are configured for search
 - Verify search query syntax
 
 **Connection Timeout:**
+
 - Increase API timeout in SearchAdvanx settings
 - Check target site server performance
 - Verify network connectivity between sites
@@ -310,6 +339,7 @@ Check `/wp-content/debug.log` for SearchAdvanx API errors.
 ## 📊 Usage Examples
 
 ### PHP Example
+
 ```php
 // Get SearchAdvanx API instance
 $api = new SearchAdvanx_API();
@@ -327,23 +357,27 @@ $results = $api->search_external_sites([
 ```
 
 ### JavaScript Example
+
 ```javascript
 // External search via AJAX
-jQuery.post('/wp-json/searchadvanx/v1/external-search', {
-    query: 'wordpress',
+jQuery
+  .post("/wp-json/searchadvanx/v1/external-search", {
+    query: "wordpress",
     sites: [
-        {
-            url: 'https://example.com',
-            name: 'Example Site',
-            api_key: 'your-api-key'
-        }
-    ]
-}).done(function(response) {
-    console.log('Search results:', response.data);
-});
+      {
+        url: "https://example.com",
+        name: "Example Site",
+        api_key: "your-api-key",
+      },
+    ],
+  })
+  .done(function (response) {
+    console.log("Search results:", response.data);
+  });
 ```
 
 ### Shortcode Example
+
 ```html
 <!-- Basic search form -->
 [searchadvanx]
@@ -370,7 +404,7 @@ Custom: api/v2/custom-search
 For high-security setups, use different API keys for different purposes:
 
 - **Read-Only Key**: Basic search access
-- **Full-Access Key**: Search + analytics access  
+- **Full-Access Key**: Search + analytics access
 - **Admin Key**: Full plugin configuration access
 
 ### Load Balancing

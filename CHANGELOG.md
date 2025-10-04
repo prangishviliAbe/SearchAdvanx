@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2025-10-04
+
+### Added
+- **Enhanced API Key Management System** - Built-in secure API key generator with 32-character cryptographically secure keys
+- **Professional Admin Interface** - Show/hide toggle, one-click copy to clipboard, and visual usage instructions
+- **Comprehensive Setup Documentation** - Complete API_SETUP_GUIDE.md with real-world examples and security best practices
+- **Improved External Sites Configuration** - Step-by-step connection instructions and visual help sections
+- **Advanced Connection Examples** - Corporate networks, blog networks, and multi-site scenarios
+- **Security Best Practices** - Key rotation, HTTPS enforcement, and access control guidelines
+- **Troubleshooting Guide** - Common issues, debug mode, and maintenance checklist
+
+### Improved
+- **Sites Manager Interface** - Enhanced with clear setup instructions and professional guidance
+- **API Key Field** - Interactive generator with secure viewing and clipboard functionality
+- **User Experience** - No technical knowledge required for cross-site search setup
+- **Documentation** - Code examples in PHP, JavaScript, cURL, and WordPress integration
+
 ## [1.1.0] - 2025-10-04
 
 ### Added
