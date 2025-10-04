@@ -355,7 +355,26 @@ The plugin is translation-ready with:
 - Admin interface
 - Search analytics
 
-## 📄 License
+## � Releases
+
+### All Releases
+| Version | Date | Status | Download |
+|---------|------|--------|----------|
+| [v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) | 2025-10-04 | **Latest** | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0) |
+| [v1.0.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) | 2025-10-04 | Stable | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1) |
+| [v1.0.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) | 2025-10-04 | Stable | [⬇️ Download](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0) |
+
+### 🚀 Latest Release - v1.1.0
+**Automatic Plugin Updates System**
+- ✅ Updates directly from GitHub
+- ✅ WordPress-native update process
+- ✅ Configurable update channels
+- ✅ Professional admin interface
+- ✅ Manual update checks
+
+[📋 **View All Releases**](RELEASES.md) | [🔗 **GitHub Releases**](https://github.com/prangishviliAbe/SearchAdvanx/releases)
+
+## �📄 License
 
 This project is licensed under the GPL v2 or later - see the [LICENSE](LICENSE) file for details.
 
