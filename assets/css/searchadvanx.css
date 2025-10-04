@@ -1,0 +1,161 @@
+/**
+ * SearchAdvanx Frontend Styles
+ *
+ * @package SearchAdvanx
+ * @since 1.0.0
+ */
+
+.searchadvanx-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.searchadvanx-input-group {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.searchadvanx-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+    outline: none;
+}
+
+.searchadvanx-input:focus {
+    border-color: #0073aa;
+    box-shadow: 0 0 5px rgba(0, 115, 170, 0.3);
+}
+
+.searchadvanx-button {
+    padding: 12px 20px;
+    background: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.searchadvanx-button:hover {
+    background: #005a87;
+}
+
+.searchadvanx-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.searchadvanx-filter {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-size: 14px;
+}
+
+.searchadvanx-results-list {
+    margin-top: 20px;
+}
+
+.searchadvanx-result-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.searchadvanx-result-item:last-child {
+    border-bottom: none;
+}
+
+.searchadvanx-result-item h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.searchadvanx-result-item h3 a {
+    color: #0073aa;
+    text-decoration: none;
+}
+
+.searchadvanx-result-item h3 a:hover {
+    text-decoration: underline;
+}
+
+.searchadvanx-result-item p {
+    margin: 0 0 10px 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.searchadvanx-result-meta {
+    font-size: 14px;
+    color: #999;
+    margin-top: 10px;
+}
+
+.searchadvanx-result-meta span {
+    margin-right: 15px;
+}
+
+.searchadvanx-loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.searchadvanx-no-results,
+.searchadvanx-error {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+    background: #f9f9f9;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.searchadvanx-error {
+    color: #d63638;
+    background: #fef7f7;
+    border: 1px solid #f1b3b3;
+}
+
+.searchadvanx-results-count {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .searchadvanx-container {
+        margin: 10px;
+    }
+    
+    .searchadvanx-input-group {
+        flex-direction: column;
+    }
+    
+    .searchadvanx-input {
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+    
+    .searchadvanx-button {
+        border-radius: 4px;
+    }
+    
+    .searchadvanx-filters {
+        flex-direction: column;
+    }
+    
+    .searchadvanx-filter {
+        width: 100%;
+    }
+}

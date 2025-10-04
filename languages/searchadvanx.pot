@@ -1,0 +1,76 @@
+# SearchAdvanx Language Template
+# Copyright (C) 2025 Abe Prangishvili
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: SearchAdvanx 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/abeprangishvili/SearchAdvanx/issues\n"
+"POT-Creation-Date: 2025-10-04 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: SearchAdvanx\n"
+
+#: includes/integrations/class-elementor-widget.php:45
+msgid "SearchAdvanx"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:71
+msgid "Content"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:78
+msgid "Post Type"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:86
+msgid "Placeholder Text"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:93
+msgid "Search..."
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:99
+msgid "Button Text"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:106
+msgid "Search"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:112
+msgid "Show Filters"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:116
+msgid "Show"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:117
+msgid "Hide"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:125
+msgid "Results Per Page"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:138
+msgid "Style"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:145
+msgid "Input Text Color"
+msgstr ""
+
+#: includes/integrations/class-elementor-widget.php:154
+msgid "Button Color"
+msgstr ""
+
+#: includes/class-searchadvanx.php:221
+msgid "SearchAdvanx Query"
+msgstr ""
