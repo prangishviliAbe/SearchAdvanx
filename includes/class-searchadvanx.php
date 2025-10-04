@@ -162,7 +162,8 @@ class SearchAdvanx {
             $request->set_param('post_type', $post_type);
             
             // Get external sites configuration
-            $external_sites = get_option('searchadvanx_external_sites', array());
+            $options = get_option('searchadvanx_options', array());
+            $external_sites = isset($options['external_sites_config']) ? $options['external_sites_config'] : array();
             if (!empty($external_sites)) {
                 $sites_config = array();
                 foreach ($external_sites as $site) {
@@ -170,6 +171,7 @@ class SearchAdvanx {
                         $sites_config[] = array(
                             'url' => $site['url'],
                             'api_key' => $site['api_key'],
+                            'name' => $site['name'] ?? '',
                             'endpoint' => $site['endpoint'] ?? 'wp-json/searchadvanx/v1/search'
                         );
                     }
@@ -177,7 +179,7 @@ class SearchAdvanx {
                 $request->set_param('sites', $sites_config);
             }
             
-            $response = $this->api->rest_external_search($request);
+            $response = $this->api->external_search($request);
         } else {
             // Use local search endpoint
             $request = new WP_REST_Request('GET', '/searchadvanx/v1/search');

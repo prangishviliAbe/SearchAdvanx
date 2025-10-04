@@ -158,17 +158,41 @@ class SearchAdvanx_API {
         $query = $request->get_param('query');
         $filters = $request->get_param('filters');
         
+        // Debug logging
+        error_log('SearchAdvanx External Search Debug:');
+        error_log('Query: ' . $query);
+        error_log('Sites provided: ' . print_r($sites, true));
+        
+        // Start with local search results
+        $local_request = new WP_REST_Request('GET', '/searchadvanx/v1/search');
+        $local_request->set_param('query', $query);
+        $local_request->set_param('post_type', $filters['post_type'] ?? 'post');
+        $local_request->set_param('posts_per_page', $filters['posts_per_page'] ?? 10);
+        
+        $local_response = $this->rest_search($local_request);
+        $local_data = $local_response->get_data();
+        
+        if (isset($local_data['results'])) {
+            foreach ($local_data['results'] as $result) {
+                $result['source_name'] = 'Local';
+                $result['source_site'] = home_url();
+                $all_results[] = $result;
+            }
+        }
+        
         // If no sites provided, use configured sites
         if (empty($sites)) {
             $options = get_option('searchadvanx_options');
             $configured_sites = isset($options['external_sites_config']) ? $options['external_sites_config'] : array();
+            error_log('Configured sites from options: ' . print_r($configured_sites, true));
             $sites = array();
             
             foreach ($configured_sites as $site_config) {
-                if (isset($site_config['active']) && $site_config['active'] && !empty($site_config['url'])) {
+                if (!empty($site_config['url']) && !empty($site_config['api_key'])) {
                     $sites[] = $site_config;
                 }
             }
+            error_log('Valid sites for searching: ' . print_r($sites, true));
         }
         
         $all_results = array();
