@@ -51,7 +51,16 @@
             container.find('.searchadvanx-loading').show();
             container.find('.searchadvanx-results').empty();
             
-            var includeExternal = container.data('include-external') === 'true';
+            var includeExternalAttr = container.attr('data-include-external');
+            var includeExternal = includeExternalAttr === 'true';
+            
+            // Debug: Show the comparison
+            console.log('Include External Debug:', {
+                'attr': includeExternalAttr,
+                'boolean': includeExternal,
+                'comparison': includeExternalAttr === 'true'
+            });
+            
             var searchData = {
                 action: 'searchadvanx_search',
                 nonce: searchadvanx_ajax.nonce,
