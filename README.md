@@ -1,5 +1,7 @@
 # SearchAdvanx
 
+![SearchAdvanx Cover](assets/search_cover.png)
+
 Advanced WordPress search engine plugin with Elementor and JetEngine support, including REST API functionality for cross-site searching.
 
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-blue)

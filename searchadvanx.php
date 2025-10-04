@@ -5,15 +5,9 @@
  * Description: Advanced search engine plugin with Elementor and JetEngine support, including REST API functionality for cross-site searching.
  * Version: 1.0.0
  * Author: Abe Prangishvili
- * Author URI: https://abeprangishvili.com
+ * Author URI: https://github.com/prangishviliAbe
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: searchadvanx
- * Domain Path: /languages
- * Requires at least: 5.0
- * Tested up to: 6.3
- * Requires PHP: 7.4
- * Network: false
  */
 
 if (!defined('ABSPATH')) {
