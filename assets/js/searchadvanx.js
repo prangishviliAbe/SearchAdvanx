@@ -43,16 +43,20 @@
             container.find('.searchadvanx-loading').show();
             container.find('.searchadvanx-results').empty();
             
+            var includeExternal = container.data('include-external') === 'true';
+            var searchData = {
+                action: 'searchadvanx_search',
+                nonce: searchadvanx_ajax.nonce,
+                query: query,
+                post_type: postType || 'post',
+                posts_per_page: resultsPerPage || 10,
+                include_external: includeExternal
+            };
+            
             $.ajax({
                 url: searchadvanx_ajax.ajax_url,
                 type: 'POST',
-                data: {
-                    action: 'searchadvanx_search',
-                    nonce: searchadvanx_ajax.nonce,
-                    query: query,
-                    post_type: postType || 'post',
-                    posts_per_page: resultsPerPage || 10
-                },
+                data: searchData,
                 success: function(response) {
                     container.find('.searchadvanx-loading').hide();
                     

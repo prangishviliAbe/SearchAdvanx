@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div class="searchadvanx-container" data-post-type="<?php echo esc_attr($atts['post_type']); ?>" data-results-per-page="<?php echo esc_attr($atts['results_per_page']); ?>">
+<div class="searchadvanx-container" data-post-type="<?php echo esc_attr($atts['post_type']); ?>" data-results-per-page="<?php echo esc_attr($atts['results_per_page']); ?>" data-include-external="<?php echo esc_attr($atts['include_external']); ?>">
     <form class="searchadvanx-form">
         <div class="searchadvanx-input-group">
             <input type="text" name="searchadvanx_query" placeholder="<?php echo esc_attr($atts['placeholder']); ?>" class="searchadvanx-input">

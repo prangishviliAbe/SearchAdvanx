@@ -152,17 +152,45 @@ class SearchAdvanx {
         
         $query = sanitize_text_field($_POST['query'] ?? '');
         $post_type = sanitize_text_field($_POST['post_type'] ?? 'post');
+        $include_external = isset($_POST['include_external']) && $_POST['include_external'] === 'true';
         $filters = isset($_POST['filters']) ? $_POST['filters'] : array();
         
-        $request = new WP_REST_Request('GET', '/searchadvanx/v1/search');
-        $request->set_param('query', $query);
-        $request->set_param('post_type', $post_type);
-        
-        if (!empty($filters['meta_query'])) {
-            $request->set_param('meta_query', $filters['meta_query']);
+        if ($include_external) {
+            // Use external search endpoint for combined results
+            $request = new WP_REST_Request('POST', '/searchadvanx/v1/external-search');
+            $request->set_param('query', $query);
+            $request->set_param('post_type', $post_type);
+            
+            // Get external sites configuration
+            $external_sites = get_option('searchadvanx_external_sites', array());
+            if (!empty($external_sites)) {
+                $sites_config = array();
+                foreach ($external_sites as $site) {
+                    if (!empty($site['url']) && !empty($site['api_key'])) {
+                        $sites_config[] = array(
+                            'url' => $site['url'],
+                            'api_key' => $site['api_key'],
+                            'endpoint' => $site['endpoint'] ?? 'wp-json/searchadvanx/v1/search'
+                        );
+                    }
+                }
+                $request->set_param('sites', $sites_config);
+            }
+            
+            $response = $this->api->rest_external_search($request);
+        } else {
+            // Use local search endpoint
+            $request = new WP_REST_Request('GET', '/searchadvanx/v1/search');
+            $request->set_param('query', $query);
+            $request->set_param('post_type', $post_type);
+            
+            if (!empty($filters['meta_query'])) {
+                $request->set_param('meta_query', $filters['meta_query']);
+            }
+            
+            $response = $this->api->rest_search($request);
         }
         
-        $response = $this->api->rest_search($request);
         wp_send_json($response->get_data());
     }
     
@@ -198,6 +226,7 @@ class SearchAdvanx {
             'show_filters' => 'false',
             'results_per_page' => '10',
             'template' => 'default',
+            'include_external' => 'false',
         ), $atts);
         
         ob_start();

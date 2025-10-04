@@ -109,6 +109,19 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             ]
         );
         
+        $this->add_control(
+            'include_external',
+            [
+                'label' => __('Include External Sites', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'searchadvanx'),
+                'label_off' => __('No', 'searchadvanx'),
+                'return_value' => 'yes',
+                'default' => 'no',
+                'description' => __('Search connected external sites along with local content', 'searchadvanx'),
+            ]
+        );
+        
         $this->end_controls_section();
         
         // Style Section
@@ -157,6 +170,7 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             'button_text' => $settings['button_text'],
             'show_filters' => $settings['show_filters'] === 'yes' ? 'true' : 'false',
             'results_per_page' => $settings['results_per_page'],
+            'include_external' => $settings['include_external'] === 'yes' ? 'true' : 'false',
         );
         
         $searchadvanx = SearchAdvanx::get_instance();
