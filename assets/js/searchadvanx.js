@@ -97,29 +97,50 @@
         
         // Display search results
         function displayResults(container, response) {
+            var displayStyle = container.attr('data-display-style') || 'list';
             var resultsHtml = '<div class="searchadvanx-results-list">';
             
             response.results.forEach(function(result) {
                 var featuredImage = result.featured_image ? 
-                    '<img src="' + result.featured_image + '" alt="' + result.title + '" style="max-width: 100px; float: left; margin-right: 15px;" />' : '';
+                    `<img src="${result.featured_image}" alt="${result.title}" />` : '';
                 
                 var sourceInfo = result.source_name ? 
-                    '<span class="source">from ' + result.source_name + '</span>' : '';
+                    `<span class="source">from ${result.source_name}</span>` : '';
                 
-                resultsHtml += `
-                    <div class="searchadvanx-result-item">
-                        ${featuredImage}
-                        <h3><a href="${result.url}" target="_blank">${result.title}</a></h3>
-                        <p>${result.content}</p>
-                        <div class="searchadvanx-result-meta">
-                            <span class="date">${new Date(result.date).toLocaleDateString()}</span>
-                            <span class="author">by ${result.author}</span>
-                            <span class="post-type">${result.post_type}</span>
-                            ${sourceInfo}
+                // Create result HTML based on display style
+                if (displayStyle === 'grid-cards' || displayStyle === 'grid-modern') {
+                    resultsHtml += `
+                        <div class="searchadvanx-result-item">
+                            ${featuredImage}
+                            <div class="searchadvanx-result-content">
+                                <h3><a href="${result.url}" target="_blank">${result.title}</a></h3>
+                                <p>${result.content}</p>
+                                <div class="searchadvanx-result-meta">
+                                    <span class="date">${new Date(result.date).toLocaleDateString()}</span>
+                                    <span class="author">by ${result.author}</span>
+                                    <span class="post-type">${result.post_type}</span>
+                                    ${sourceInfo}
+                                </div>
+                            </div>
                         </div>
-                        <div style="clear: both;"></div>
-                    </div>
-                `;
+                    `;
+                } else {
+                    // List style (default)
+                    resultsHtml += `
+                        <div class="searchadvanx-result-item">
+                            ${featuredImage}
+                            <h3><a href="${result.url}" target="_blank">${result.title}</a></h3>
+                            <p>${result.content}</p>
+                            <div class="searchadvanx-result-meta">
+                                <span class="date">${new Date(result.date).toLocaleDateString()}</span>
+                                <span class="author">by ${result.author}</span>
+                                <span class="post-type">${result.post_type}</span>
+                                ${sourceInfo}
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+                    `;
+                }
             });
             
             resultsHtml += '</div>';

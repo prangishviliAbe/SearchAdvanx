@@ -137,6 +137,13 @@ class SearchAdvanx {
             SEARCHADVANX_VERSION
         );
         
+        wp_enqueue_style(
+            'searchadvanx-display-styles',
+            SEARCHADVANX_PLUGIN_URL . 'assets/css/display-styles.css',
+            array(),
+            SEARCHADVANX_VERSION
+        );
+        
         wp_localize_script('searchadvanx-js', 'searchadvanx_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('searchadvanx_nonce'),
@@ -238,6 +245,7 @@ class SearchAdvanx {
             'results_per_page' => '10',
             'template' => 'default',
             'include_external' => 'false',
+            'display_style' => 'list',
         ), $atts);
         
         ob_start();

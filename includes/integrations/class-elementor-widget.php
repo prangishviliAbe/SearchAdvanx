@@ -122,6 +122,21 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             ]
         );
         
+        $this->add_control(
+            'display_style',
+            [
+                'label' => __('Display Style', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'list',
+                'options' => [
+                    'list' => __('List View', 'searchadvanx'),
+                    'grid-cards' => __('Grid Cards', 'searchadvanx'),
+                    'grid-modern' => __('Modern Grid', 'searchadvanx'),
+                ],
+                'description' => __('Choose how search results are displayed', 'searchadvanx'),
+            ]
+        );
+        
         $this->end_controls_section();
         
         // Style Section
@@ -155,6 +170,65 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             ]
         );
         
+        $this->add_control(
+            'results_bg_color',
+            [
+                'label' => __('Results Background', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .searchadvanx-result-item' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'results_title_color',
+            [
+                'label' => __('Results Title Color', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .searchadvanx-result-item h3 a' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'results_text_color',
+            [
+                'label' => __('Results Text Color', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .searchadvanx-result-item p' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'grid_gap',
+            [
+                'label' => __('Grid Gap', 'searchadvanx'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 50,
+                        'step' => 5,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 25,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .searchadvanx-results-list' => 'gap: {{SIZE}}{{UNIT}}',
+                ],
+                'condition' => [
+                    'display_style!' => 'list',
+                ],
+            ]
+        );
+        
         $this->end_controls_section();
     }
     
@@ -171,6 +245,7 @@ class SearchAdvanx_Elementor_Widget extends \Elementor\Widget_Base {
             'show_filters' => $settings['show_filters'] === 'yes' ? 'true' : 'false',
             'results_per_page' => $settings['results_per_page'],
             'include_external' => $settings['include_external'] === 'yes' ? 'true' : 'false',
+            'display_style' => $settings['display_style'],
         );
         
         $searchadvanx = SearchAdvanx::get_instance();
