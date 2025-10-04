@@ -6,8 +6,8 @@
  */
 
 .searchadvanx-container {
-    max-width: 800px;
-    margin: 20px auto;
+    width: 100%;
+    margin: 20px 0;
 }
 
 .searchadvanx-input-group {
