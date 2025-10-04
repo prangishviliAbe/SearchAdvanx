@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.3] - 2025-10-04
+
+### Fixed
+
+- **Width Expansion for Elementor Containers** - Removed 800px max-width constraint from `.searchadvanx-container`
+- **Full-Width Responsive Design** - Enhanced all search components to expand to full container width
+- **Grid Layout Flexibility** - Improved grid cards and modern grid styles for wide containers
+- **CSS Standards Compliance** - Added standard `line-clamp` properties alongside `-webkit-line-clamp` for better browser compatibility
+- **Search Form Expansion** - Updated input groups and form elements for complete width utilization
+
+### Changed
+
+- Container margin from `20px auto` to `20px 0` for better Elementor integration
+- Added comprehensive full-width styles for all display modes
+- Enhanced responsive breakpoints for optimal wide container performance
+
 ## [1.2.0] - 2025-10-04
 
 ### Added
