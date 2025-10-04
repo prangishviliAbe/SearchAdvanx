@@ -4,11 +4,11 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 
 ## 📋 Release Overview
 
-| Version | Release Date | Status | Highlights |
-|---------|--------------|--------|------------|
-| [v1.1.0](#v110---2025-10-04) | 2025-10-04 | **Latest** | 🚀 Automatic Updates System |
-| [v1.0.1](#v101---2025-10-04) | 2025-10-04 | Stable | 🔧 Critical Fixes & Admin UI |
-| [v1.0.0](#v100---2025-10-04) | 2025-10-04 | Stable | 🎉 Initial Release |
+| Version                      | Release Date | Status     | Highlights                   |
+| ---------------------------- | ------------ | ---------- | ---------------------------- |
+| [v1.1.0](#v110---2025-10-04) | 2025-10-04   | **Latest** | 🚀 Automatic Updates System  |
+| [v1.0.1](#v101---2025-10-04) | 2025-10-04   | Stable     | 🔧 Critical Fixes & Admin UI |
+| [v1.0.0](#v100---2025-10-04) | 2025-10-04   | Stable     | 🎉 Initial Release           |
 
 ---
 
@@ -17,11 +17,13 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 **🚀 Major Feature Release - Automatic Updates System**
 
 ### Download
+
 - **📦 [Download v1.1.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.1.0)**
 - **🔗 [Source Code (zip)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.1.0.zip)**
 - **🔗 [Source Code (tar.gz)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.1.0.tar.gz)**
 
 ### ✨ Major Features Added
+
 - **Automatic Plugin Updates** - Updates directly from GitHub using Plugin Update Checker
 - **Enhanced Admin Interface** - New updates management section with professional design
 - **Configurable Update Channels** - Choose between stable (main) or beta (develop) releases
@@ -30,6 +32,7 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 - **GitHub API Integration** - Direct repository communication for reliable updates
 
 ### 🎛️ Admin Interface Enhancements
+
 - New "Plugin Updates" section in SearchAdvanx settings
 - Enable/disable automatic updates toggle
 - Update branch selection (main/develop)
@@ -38,11 +41,13 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 - Built-in help and configuration guidance
 
 ### 📚 Documentation
+
 - Complete UPDATE_CHECKER_README.md setup guide
 - Enhanced CHANGELOG with detailed feature descriptions
 - Built-in admin help text and user guidance
 
 ### 🔧 Technical Details
+
 - **Requirements**: WordPress 5.0+, PHP 7.4+
 - **New Dependencies**: Plugin Update Checker v5.6
 - **Compatibility**: All existing SearchAdvanx features maintained
@@ -55,27 +60,32 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 **🔧 Critical Fixes & Admin Interface Overhaul**
 
 ### Download
+
 - **📦 [Download v1.0.1](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.1)**
 - **🔗 [Source Code (zip)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.0.1.zip)**
 - **🔗 [Source Code (tar.gz)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.0.1.tar.gz)**
 
 ### 🔧 Critical Fixes
+
 - Fixed critical error on External Sites admin page that caused WordPress crashes
 - Resolved class loading and autoloader issues preventing plugin activation
 - Enhanced plugin initialization with better error handling and debugging
 
 ### 🎨 Admin Interface Overhaul
+
 - Moved plugin from Settings submenu to dedicated main sidebar menu
 - Added professional dashboard with statistics and quick action cards
 - Implemented comprehensive submenu structure (Settings, External Sites, Analytics, API Docs)
 - Modern responsive design with improved user experience
 
 ### 🖼️ Branding & Presentation
+
 - Added professional cover image for repository branding
 - Updated README with visual improvements
 - Enhanced documentation and version consistency
 
 ### 💡 Technical Improvements
+
 - Improved class loading with comprehensive error detection
 - Enhanced database operations with safety checks
 - Better admin asset loading across all plugin pages
@@ -88,11 +98,13 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 **🎉 Initial Release - Complete Search Engine Solution**
 
 ### Download
+
 - **📦 [Download v1.0.0](https://github.com/prangishviliAbe/SearchAdvanx/releases/tag/v1.0.0)**
 - **🔗 [Source Code (zip)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.0.0.zip)**
 - **🔗 [Source Code (tar.gz)](https://github.com/prangishviliAbe/SearchAdvanx/archive/refs/tags/v1.0.0.tar.gz)**
 
 ### 🎯 Core Features
+
 - **Advanced Search Engine** - Powerful WordPress search with custom field support
 - **REST API Endpoints** - Local and external site search capabilities
 - **Elementor Integration** - Custom widget with visual controls and live preview
@@ -103,12 +115,14 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 - **Shortcode Support** - `[searchadvanx]` for easy implementation
 
 ### 🔌 Integrations
+
 - **Elementor**: Custom SearchAdvanx widget
 - **JetEngine**: Custom query type integration
 - **WordPress REST API**: Native API endpoint support
 - **AJAX**: Real-time search without page reloads
 
 ### 📊 Technical Specifications
+
 - **WordPress**: 5.0+ compatibility
 - **PHP**: 7.4+ required
 - **Architecture**: Modular, object-oriented design
@@ -120,17 +134,20 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 ## 📈 Release Statistics
 
 ### Download Performance
+
 - **Total Releases**: 3
 - **Latest Version**: v1.1.0
 - **Major Releases**: 2 (v1.0.0, v1.1.0)
 - **Patch Releases**: 1 (v1.0.1)
 
 ### Feature Evolution
+
 - **v1.0.0**: Core search functionality and integrations
 - **v1.0.1**: Critical fixes and professional admin interface
 - **v1.1.0**: Automatic updates and enhanced user experience
 
 ### Compatibility
+
 - **WordPress**: 5.0+ (tested up to latest)
 - **PHP**: 7.4+ (optimized for PHP 8.0+)
 - **Elementor**: All versions supported
@@ -141,14 +158,17 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 ## 🔄 Update Path
 
 ### From v1.0.0 to v1.1.0
+
 1. **Manual Update**: Download v1.1.0 and upload via WordPress admin
 2. **Future Updates**: Use automatic update system (enabled by default)
 
 ### From v1.0.1 to v1.1.0
+
 1. **Manual Update**: Download v1.1.0 and upload via WordPress admin
 2. **Future Updates**: Use automatic update system (enabled by default)
 
 ### Automatic Updates (v1.1.0+)
+
 1. **Enable**: Go to SearchAdvanx > Settings > Plugin Updates
 2. **Configure**: Choose update branch (main for stable)
 3. **Enjoy**: Automatic notifications and one-click updates
@@ -158,12 +178,14 @@ All releases of SearchAdvanx with detailed information, download links, and chan
 ## 🛠️ Installation
 
 ### Fresh Installation
+
 1. Download the latest release ZIP file
 2. Go to WordPress Admin > Plugins > Add New > Upload Plugin
 3. Upload the ZIP file and activate
 4. Configure settings at SearchAdvanx > Settings
 
 ### Update from Previous Version
+
 1. **v1.1.0+**: Use automatic updates (recommended)
 2. **Manual**: Download latest release and upload via WordPress admin
 3. **Settings**: All settings are preserved during updates
